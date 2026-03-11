@@ -1,6 +1,6 @@
 Milestone 1
-Raajpaal Gohlwar (Capt - USMC)
-Jonathan Goohs (LT - USN)
+Raajpaal  (Capt - USMC)
+[author] (LT - USN)
 Tamarcus Norma (LT - USN)
 ----------------------------------------------------------------------------------------------------
 D1 - For threadTrivialWorkload.py [4 pts]

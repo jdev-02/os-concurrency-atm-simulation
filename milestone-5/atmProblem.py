@@ -1,6 +1,6 @@
 '''
 atmProblem.py
-CS3070: Gohlwar, Goohs, Norman 
+CS3070: , ,  
 
 Created: Spring '16
 Updated: 13 Jan 2022
