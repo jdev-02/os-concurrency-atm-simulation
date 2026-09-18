@@ -1,20 +1,13 @@
 Milestone 1
-Raajpaal  (Capt - USMC)
+[teammate] (Capt - USMC)
 [author] (LT - USN)
-Tamarcus Norma (LT - USN)
+[teammate] (LT - USN)
 ----------------------------------------------------------------------------------------------------
 D1 - For threadTrivialWorkload.py [4 pts]
 a) Based on an examination of the code available, what do you expect for relative runtime
 performance & output under each Python threading model?
 
-<<<<<<< Updated upstream
-Based off our intial examination of the code, the group expected that using the Python 3.13t 
-environment would allow the program to execute  faster due to its inherit property of running without
-the Python  Global Interpreter Lock (GIL). This property forces only one thread to hold control of
-the Python interpreter at a time, which could limit runtime speed.
-=======
 Based on examining the code, the group expected Python 3.13t to exhibit faster runtime due to its lack of the Python Global Interpreter Lock (GIL). The GIL restricts Python to one thread executing Python code at a time, potentially limiting concurrency and runtime speed in multi-threaded scenarios.
->>>>>>> Stashed changes
 
 b) Run them once in each Python environment (3.13 & 3.13t); summarize their differences
 in output.
@@ -26,47 +19,24 @@ All other script outputs were identical in both environments.
 
 c) Compare your expectations to the actual behaviors, explain any differences.
 
-<<<<<<< Updated upstream
-Our expectations were contradictory to the actual behavior of the scripts being run. We noticed that 
-for this program, the Python3.13 environment ran faster than the Python3.13t environment. With 
-respect to attributing this counterintuitive result, the Python 3.13t runtime environment is built to
-support CPU-intensive tasks, of which this trivial workload is not. 
-=======
-Our expectations contradicted the actual observed behavior. 
->>>>>>> Stashed changes
+Our expectations contradicted the actual observed behavior.
 
 Performance difference:
 Python 3.13 was 39.1% faster than Python 3.13t.
 
-<<<<<<< Updated upstream
-d) Is the timing methodology adequate to make any statements about the results? Why or
-why not?
-
-Yes, after running each script about 15 times each, we calculated an average percentage difference
-of 25% faster with Python 3.13 runtime environment. 
-=======
-This counterintuitive result likely occurs because Python 3.13t is optimized for CPU intensive tasks, while trivial workload is not CPU-bound. Overhead from managing multiple threads without GIL restrictions may outweigh any potential performance gains in heavy operations. 
+This counterintuitive result likely occurs because Python 3.13t is optimized for CPU intensive tasks, while trivial workload is not CPU-bound. Overhead from managing multiple threads without GIL restrictions may outweigh any potential performance gains in heavy operations.
 
 d) Is the timing methodology adequate to make any statements about the results? Why or
 why not?
 
 Yes. By running each script approximately 15 times, we calculated an average performance difference of 25% in favor of Python 3.13.
 
->>>>>>> Stashed changes
-
 ----------------------------------------------------------------------------------------------------
 D2 - For threadHeavyWorkload.py [4 pts]
 a) Based on an examination of the code available, what do you expect for relative runtime
 performance & output under each Python treading model?
 
-<<<<<<< Updated upstream
-Based off our intial examination of the code, the group expected that using the Python 3.13t 
-environment would allow the program to execute  faster due to its inherit property of running without
-the Python  Global Interpreter Lock (GIL). The heavy workload script performs CPU-intensive prime
-checking operations on large numbers, which should benefit from true parallel execution.
-=======
 Based on examining the code, the group expected that Python 3.13t to execute faster due to its lack of the Global Interpreter Lock (GIL). The heavy workload script performs CPU-intensive prime checking operations on large numbers, which should benefit from true parallel execution across threads.
->>>>>>> Stashed changes
 
 b) Run them, summarize their differences in output.
 
@@ -80,25 +50,15 @@ c) Compare your expectations to the actual behaviors, explain any differences.
 Our expectations were consistent with the observed results.
 Performance difference:
 Python 3.13t was approximately 66% faster than Python 3.13.
-<<<<<<< Updated upstream
-With respect to attributing this result, the Python 3.13t runtime environment is built to support
-CPU-intensive tasks, of which this heavy workload is. The prime checking operations can utilize true
-parallelism across multiple CPU cores.
-=======
-This is expected because Python 3.13t is designed for CPU-intensive workloads. The prime-checking operations in the script can leverage true parallelism across multiple CPU cores. This allows the CPU to fully utilize the GIL-free environment. 
->>>>>>> Stashed changes
+
+This is expected because Python 3.13t is designed for CPU-intensive workloads. The prime-checking operations in the script can leverage true parallelism across multiple CPU cores. This allows the CPU to fully utilize the GIL-free environment.
 
 d) Is the timing methodology adequate to make any statements about the results? Why or
 why not?
 
-<<<<<<< Updated upstream
-Yes, the timing methodology is adequate for this heavy workload. The longer execution times make
-measurement noise negligible compared to the actual runtime differences.
-----------------------------------------------------------------------------------------------------
-=======
 Yes. The timing methodology is adequate for this heavy workload. The longer execution times reduce the impact of measurement noise, making observed differences between Python versions meaningful.
 
->>>>>>> Stashed changes
+----------------------------------------------------------------------------------------------------
 D3 - With respect to D1 & D2 parts d) [8 pts]
 
 a) If there is a difference in answer between D1 and D2? Why
@@ -108,20 +68,10 @@ Yes, there is a significant difference between D1 and D2 results:
 D1: Python 3.13 was 25-39% faster (trivial workload)
 D2: Python 3.13t was ~ 66% faster (heavy workload)
 
-<<<<<<< Updated upstream
-This difference exists because the workload characteristics fundamentally differ in the following
-areas:
-
-Trivial workload: Consists primarily of I/O operations (print(), q.put(), os.getpid()) that already
-released the GIL in standard Python. The GIL removal adds overhead without computational benefit.
-Heavy workload: Involves CPU-intensive prime checking that can leverage true parallel execution
-across multiple cores, making the GIL removal overhead worthwhile.
-=======
 This difference is due to fundamental differences in workload characteristics:
 
 Trivial workload: Primarily involves I/O operations (print(), q.put(), os.getpid()) that already release the GIL in standard Python. Removing the GIL introduces unnecessary overhead without providing a performance benefit.
-Heavy workload: Involves CPU-intensive prime-checking operations that benefit from true parallel execution across multiple cores. Removing the GIL allows for more effective parallelism. 
->>>>>>> Stashed changes
+Heavy workload: Involves CPU-intensive prime-checking operations that benefit from true parallel execution across multiple cores. Removing the GIL allows for more effective parallelism.
 
 b) If the answer is yes: What could be done to fix this?
 
@@ -134,30 +84,10 @@ N/A
 D4 - In a paragraph and/or a handful of bullet points, compare and contrast user and kernel
 threads providing an example problem for each where it is favored over the other. [4 pts]
 
-<<<<<<< Updated upstream
-- User threads are managed by user space libraries, entirely in user space. The operating system
-only views the process as a single-threaded process and can't see the other threads. With user
-threads, if one thread blocks then the entire process blocks and waits for that thread to complete.
-Since all threads run on one CPU, it can't utilize multiple cores. These are much faster as switches
-only require library-level access.
-
-- Kernel threads are created and managed by the OS. Each thread is known to the OS and scheduled by
-the OS scheduler. Kernel threads are better positioned to take advantage of multiple cores in
-comparison to user threads. These threads are slower, as kernel calls are required to switch.
-
-- An example where user threads are favored over kernel threads would be a bank ATM system handling
-many concurrent transactions where low overhead and fast context switching are important.
-
-- An example where kernel threads are favored would be for AI applications used to find new drugs
-where intensive computational work benefits from parallelism across numerous cores of intensive
-power.
-----------------------------------------------------------------------------------------------------
-=======
 User threads are managed by user-space libraries. The operating system treats the process as a single-threaded process and is unaware of any other threads. With user threads, if one thread blocks, the entire process blocks. User threads cannot utilize multiple CPU cores simultaneously but are much faster as switches only require library-level access.
 
 Kernel threads are managed directly by the OS. The OS scheduler is aware of each thread and can distribute them across multiple cores, allowing true parallel execution. Kernel threads are better positioned to take advantage of multiple cores in comparison to user threads. These threads are slower, as kernel calls are required to switch.
 
 An example where user threads are favored over kernel threads would be a bank ATM system. A bank ATM system handling many concurrent transactions, where fast context switching and minimal overhead are more important than multi-core utilization.
 
-An example where kernel threads are favored would be for AI applications. AI applications used in pharmaceutical research can be used discover new drugs. These require intensive computational work that benefits from parallel processing across multiple CPU cores. 
->>>>>>> Stashed changes
+An example where kernel threads are favored would be for AI applications. AI applications used in pharmaceutical research can be used discover new drugs. These require intensive computational work that benefits from parallel processing across multiple CPU cores.
